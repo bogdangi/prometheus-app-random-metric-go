@@ -12,15 +12,15 @@ import (
 )
 
 func Test_RandomPrometheusMetric(t *testing.T) {
-    req, err := http.NewRequest("GET", "http://localhost:3000/metrics", nil)
-    if err != nil {
-        t.Fatal(err)
-    }
-
     randomizer := Randomizer{
         RandImpl: func() float64 { return 1234567.89 },
     }
     recordMetrics(randomizer)
+
+    req, err := http.NewRequest("GET", "http://localhost:3000/metrics", nil)
+    if err != nil {
+        t.Fatal(err)
+    }
 
     res := httptest.NewRecorder()
     promhttp.Handler().ServeHTTP(res, req)
