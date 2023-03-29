@@ -28,7 +28,7 @@ jobs:
       run: go test -v .
 
     - name: Publish Docker
-      uses: elgohr/Publish-Docker-Github-Action@2.8
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: ${{ github.repository }} 
         username: ${{ secrets.DOCKER_USERNAME }}
